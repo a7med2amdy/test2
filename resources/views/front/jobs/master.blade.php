@@ -10,13 +10,14 @@
                 <nav aria-label="breadcrumb" class=" rounded-3 p-3 mb-4">
                     <ol class="breadcrumb mb-0">
                         <li class="breadcrumb-item"><a href="#">Home</a></li>
-                        <li class="breadcrumb-item active">Post a Job</li>
+                        <li class="breadcrumb-item active">@yield('page-title')</li>
                     </ol>
                 </nav>
             </div>
         </div>
         <div class="row">
-            @include('front.jobs.partials.sidebar')
+            @yield('sidebar')
+            
             
             @yield('content')
             

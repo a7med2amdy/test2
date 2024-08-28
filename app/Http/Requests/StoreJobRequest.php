@@ -11,7 +11,7 @@ class StoreJobRequest extends FormRequest
      */
     public function authorize(): bool
     {
-        return false;
+        return true;
     }
 
     /**
@@ -19,10 +19,25 @@ class StoreJobRequest extends FormRequest
      *
      * @return array<string, \Illuminate\Contracts\Validation\ValidationRule|array<mixed>|string>
      */
-    public function rules(): array
+    public function rules()
     {
         return [
-            //
+            'name'=>['required','string','max:200'],
+            'category' =>'',
+            'job_nature' =>'',
+            'vacancy'=>'required',
+            'salary' => 'required',
+            'location' => 'required',
+            'description' => 'required',
+            'benefits' => 'required',
+            'responsibility' => 'required',
+            'keywords' => 'required',
+            'qualifications'=>'',
+
+            'company_name'=> 'required',
+            'company_location'=>'required',
+            'company_website'=>'required',
+
         ];
     }
 }

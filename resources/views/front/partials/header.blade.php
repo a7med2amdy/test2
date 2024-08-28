@@ -16,8 +16,16 @@
 					<li class="nav-item">
                         <a class="nav-link" aria-current="page" href="{{ route('myprofile.index') }}">My Profile</a>
                     </li>									
-				</ul>				
-				<a class="btn btn-outline-primary me-2" href="{{ route('login') }}" type="submit">Login</a>
+				</ul>
+				@if (! Auth::check())
+				    <a class="btn btn-outline-primary me-2" href="{{ route('login') }}" type="submit">Login</a>
+				@else
+				<form action="{{ route('logout') }}" method="POST" class="d-inline" onclick="this.closest('form').submit();return false;">
+					@csrf
+				    <a class="btn btn-outline-danger me-2" href="javascript:{}" onclick="document.getElementById('my_form').submit(); return false;">Logout</a>
+				</form>
+				@endif				
+				
 				<a class="btn btn-primary" href="{{ route('jobs.create') }}" type="submit">Post a Job</a>
 			</div>
 		</div>

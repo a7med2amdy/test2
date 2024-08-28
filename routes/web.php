@@ -16,9 +16,7 @@ Route::get('find-jop',[FindJobController::class,'findJop'])->name('front.findJop
 Route::name('front.')->controller(HomeController::class)->group(function(){
     Route::get('/', 'index')->name('index');
     
-    Route::middleware('auth')->group(function(){
-        Route::get('/myjobs', 'myJobs')->name('my-jobs');
-    });
+    
     
    
 });
@@ -41,6 +39,8 @@ Route::middleware('auth')->group(function () {
 //my jobs
 Route::controller(JobController::class)->middleware('auth')->group(function(){
     Route::resource('jobs',JobController::class);
+    Route::post('/save-featured-job/{id}','store_featurd_job')->name('jobs.featured_job.store');
+    Route::post('/store-applied-job/{id}','store_applied_job')->name('jobs.applied_job.store');
 });
 
 // Applied Jobs 
@@ -50,7 +50,8 @@ Route::controller(FrontAppliedJobs::class)->middleware('auth')->group(function()
 
 // Saved Jobs 
 Route::controller(SavedJobsController::class)->middleware('auth')->group(function(){
-    Route::resource('appliedjobs',SavedJobsController::class);
+    Route::resource('savedjobs',SavedJobsController::class);
+    Route::post('/saved_job/{id}','store_job')->name('savedjobs.store_job');
 });
 
 

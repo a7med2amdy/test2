@@ -1,8 +1,11 @@
 <?php
 
 namespace App\Http\Controllers;
-
+use App\Models\Saved_Job;
+use App\Models\Job;
 use Illuminate\Http\Request;
+use App\Http\Requests\StoreSavedJobRequest;
+use Illuminate\Support\Facades\Auth;
 
 class SavedJobsController extends Controller
 {
@@ -11,7 +14,10 @@ class SavedJobsController extends Controller
      */
     public function index()
     {
-        return view('front.jobs.saved-jobs');
+        
+        $saved_jobs = Saved_Job::where('user_id',Auth::user()->id)->paginate(10) ;
+        
+        return view('front.jobs.saved-jobs',get_defined_vars());
     }
 
     /**
@@ -27,7 +33,18 @@ class SavedJobsController extends Controller
      */
     public function store(Request $request)
     {
-        //
+       
+    
+    }
+    public function store_job($id)
+    {
+        $job_id= $id ;             
+        $data = new Saved_Job ;       
+        $data->job_id = $job_id ; 
+        $data->save();
+        return to_route('jobs.index');
+        
+    
     }
 
     /**
@@ -35,7 +52,7 @@ class SavedJobsController extends Controller
      */
     public function show(string $id)
     {
-        //
+       
     }
 
     /**
@@ -57,8 +74,9 @@ class SavedJobsController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
+    public function destroy(Saved_Job $saved_Job)
     {
-        //
+        $saved_Job->delete();
+        return to_route('savedjobs.index');
     }
 }

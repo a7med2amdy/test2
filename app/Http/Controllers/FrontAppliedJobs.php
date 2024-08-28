@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\AppliedJobs;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class FrontAppliedJobs extends Controller
 {
@@ -11,7 +13,8 @@ class FrontAppliedJobs extends Controller
      */
     public function index()
     {
-        return view('front.jobs.applied-jobs');
+        $applied_jobs = AppliedJobs::where('user_id',Auth::user()->id)->paginate(10) ;
+        return view('front.jobs.applied-jobs',get_defined_vars());
     }
 
     /**

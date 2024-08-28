@@ -14,16 +14,18 @@
             <ul class="list-group list-group-flush ">
                 
                 <li class="list-group-item d-flex justify-content-between align-items-center p-3">
+                    <a href="{{ route('jobs.index') }}">My Jobs</a>
+                </li>
+
+                <li class="list-group-item d-flex justify-content-between align-items-center p-3">
                     <a href="{{ route('jobs.create') }}">Post a Job</a>
                 </li>
-                <li class="list-group-item d-flex justify-content-between align-items-center p-3">
-                    <a href="{{ route('front.my-jobs') }}">My Jobs</a>
-                </li>
+                
                 <li class="list-group-item d-flex justify-content-between align-items-center p-3">
                     <a href="{{ route('appliedjobs.index') }}">Jobs Applied</a>
                 </li>
                 <li class="list-group-item d-flex justify-content-between align-items-center p-3">
-                    <a href="{{ route('appliedjobs.index') }}">Saved Jobs</a>
+                    <a href="{{ route('savedjobs.index') }}">Saved Jobs</a>
                 </li>                                                        
             </ul>
         </div>
